@@ -9,7 +9,7 @@ scrape_configs:
   - job_name: 'movement_curve_dex_api'
     scheme: http
     static_configs:
-      - targets: ['movement-dex-indexer.railway.internal']
+      - targets: ['movement-dex-indexer.railway.internal:8080']
 
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
