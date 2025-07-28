@@ -7,10 +7,12 @@ scrape_configs:
       - targets: ['localhost:9090']
 
   - job_name: 'movement_curve_dex_api'
+    metrics_path: '/v1/movement/mainnet/curve/metrics'
     scheme: https
     static_configs:
-      - targets: ['movement-dex-api-production.up.railway.app']
-
+      - targets: ['api.interestlabs.io']
+        labels:
+          application: 'Movement Curve Dex API'
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
