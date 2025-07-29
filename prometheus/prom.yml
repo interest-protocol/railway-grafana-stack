@@ -21,6 +21,15 @@ scrape_configs:
       - targets: ['coin-metadata-api-production.up.railway.app']
         labels:
           application: 'Coin Metadata API'
+        
+  
+  - job_name: 'rates_api'
+   # metrics_path: '/v1/movement/mainnet/curve/metrics'
+    scheme: https
+    static_configs:
+      - targets: ['rates-api-production.up.railway.app']
+        labels:
+          application: 'Rates API'
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
