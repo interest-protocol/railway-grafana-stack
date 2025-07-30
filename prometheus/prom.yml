@@ -40,8 +40,6 @@ scrape_configs:
         labels:
           application: 'Files Upload API'
 
-
-  
   - job_name: 'ww_image_api'
    # metrics_path: '/v1/movement/mainnet/curve/metrics'
     scheme: https
@@ -57,6 +55,14 @@ scrape_configs:
       - targets: ['interest-stable-dex-api-production.up.railway.app']
         labels:
           application: 'SUI Stable Dex API'
+
+  - job_name: 'ww_server'
+    metrics_path: '/prom-metrics'
+    scheme: https
+    static_configs:
+      - targets: ['ww-server-prod-production.up.railway.app']
+        labels:
+          application: 'WW Server'
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
