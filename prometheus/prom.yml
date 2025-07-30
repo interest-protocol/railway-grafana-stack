@@ -39,6 +39,16 @@ scrape_configs:
       - targets: ['file-upload-prod.up.railway.app', 'file-upload-2-production.up.railway.app']
         labels:
           application: 'Files Upload API'
+
+
+  
+  - job_name: 'ww_image_api'
+   # metrics_path: '/v1/movement/mainnet/curve/metrics'
+    scheme: https
+    static_configs:
+      - targets: ['ww-img-serve-prd-production.up.railway.app']
+        labels:
+          application: 'Winter Walrus NFT API'
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
