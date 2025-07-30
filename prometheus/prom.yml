@@ -49,6 +49,14 @@ scrape_configs:
       - targets: ['ww-img-serve-prd-production.up.railway.app']
         labels:
           application: 'Winter Walrus NFT API'
+
+  - job_name: 'interest_stable_api'
+   # metrics_path: '/v1/movement/mainnet/curve/metrics'
+    scheme: https
+    static_configs:
+      - targets: ['interest-stable-dex-api-production.up.railway.app']
+        labels:
+          application: 'SUI Stable Dex API'
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
