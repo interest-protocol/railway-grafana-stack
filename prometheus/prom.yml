@@ -27,7 +27,7 @@ scrape_configs:
    # metrics_path: '/v1/movement/mainnet/curve/metrics'
     scheme: https
     static_configs:
-      - targets: ['rates-api-production.up.railway.app']
+      - targets: ['rates-api-production.up.railway.app', 'rates-api-staging.up.railway.app']
         labels:
           application: 'Rates API'
 
