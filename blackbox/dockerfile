@@ -1,7 +1,10 @@
-FROM prom/blackbox-exporter:latest
+ARG VERSION=latest
+
+
+FROM prom/blackbox-exporter:${VERSION}
 
 # Copy the prom.yml configuration file to the container
 COPY blackbox.yml /config/blackbox.yml
 
 # Command to run Prometheus
-CMD ["--config.file=/config/blackbox.yml", "--storage.tsdb.path=/blackbox"]
+CMD ["--config.file=/config/blackbox.yml"]
