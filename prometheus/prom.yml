@@ -6,6 +6,27 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
+  - job_name: 'blackbox'
+    metrics_path: /probe
+    params:
+      module: [https_2xx_insecure]
+    static_configs:
+      - targets:
+          - https://movement-dex-api-production.up.railway.app/health
+          - https://coin-metadata-api-production.up.railway.app/health
+          - https://rates-api-production.up.railway.app/health
+          - https://file-upload-prod.up.railway.app/health
+          - https://ww-img-serve-prd-production.up.railway.app/health
+          - https://interest-stable-dex-api-production.up.railway.app/health
+          - https://ww-server-prod-production.up.railway.app/health
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: black-box.railway.internal:9115
+
   - job_name: 'movement_curve_dex_api'
     #metrics_path: '/v1/movement/mainnet/curve/metrics'
     scheme: https
