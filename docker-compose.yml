@@ -12,6 +12,16 @@ services:
     volumes:
       - prometheus_data:/prometheus
 
+  blackbox_exporter:
+    build:
+      context: ./blackbox
+      dockerfile: dockerfile
+    user: root # required for data persistence
+    ports:
+      - "9115:9115"
+    volumes:
+      - blackbox_data:/blackbox
+
   loki:
     build:
       context: ./loki
@@ -66,3 +76,4 @@ volumes:
   loki_data:
   grafana_data:
   tempo_data:
+  blackbox_data:
