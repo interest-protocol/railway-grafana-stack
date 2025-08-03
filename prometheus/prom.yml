@@ -20,6 +20,7 @@ scrape_configs:
           - https://interest-stable-dex-api-production.up.railway.app/health
           - https://ww-server-prod-production.up.railway.app/health
           - https://prdquestapi-production.up.railway.app/health
+          - https://trade-aggregator-api-production.up.railway.app/health
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -93,6 +94,14 @@ scrape_configs:
       - targets: ['prdquestapi-production.up.railway.app']
         labels:
           application: 'Quest API'
+
+  - job_name: 'trade_aggregator_api'
+    #metrics_path: '/prom-metrics'
+    scheme: https
+    static_configs:
+      - targets: ['trade-aggregator-api-production.up.railway.app']
+        labels:
+          application: 'Trade Aggregator API'
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
