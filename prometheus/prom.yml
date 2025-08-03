@@ -19,6 +19,7 @@ scrape_configs:
           - https://ww-img-serve-prd-production.up.railway.app/health
           - https://interest-stable-dex-api-production.up.railway.app/health
           - https://ww-server-prod-production.up.railway.app/health
+          - https://prdquestapi-production.up.railway.app/health
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -84,6 +85,14 @@ scrape_configs:
       - targets: ['ww-server-prod-production.up.railway.app']
         labels:
           application: 'WW Server'
+
+  - job_name: 'quest_api'
+    #metrics_path: '/prom-metrics'
+    scheme: https
+    static_configs:
+      - targets: ['prdquestapi-production.up.railway.app']
+        labels:
+          application: 'Quest API'
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
