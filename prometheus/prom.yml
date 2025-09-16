@@ -23,6 +23,7 @@ scrape_configs:
           - https://trade-aggregator-api-production.up.railway.app/health
           - https://movement-market-pulse-production.up.railway.app/health
           - https://api-vesting-production.up.railway.app/health
+          - https://rates-api-staging.up.railway.app/health
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
