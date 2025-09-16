@@ -121,6 +121,7 @@ scrape_configs:
       - targets: ['api-vesting-production.up.railway.app']
         labels:
           application: 'Vesting API'
+
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
