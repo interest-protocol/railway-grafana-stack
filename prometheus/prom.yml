@@ -22,10 +22,57 @@ scrape_configs:
           - https://prdquestapi-production.up.railway.app/health
           - https://trade-aggregator-api-production.up.railway.app/health
           - https://movement-market-pulse-production.up.railway.app/health
+          - https://api-vesting-production.up.railway.app/health
     relabel_configs:
+#      - source_labels: [__address__]
+#        target_label: __param_target
+      # Mapear URLs para nomes de APIs
       - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
+        regex: 'https://movement-dex-api-production.up.railway.app/health'
+        target_label: api_name
+        replacement: 'movement-dex-api'
+      - source_labels: [__address__]
+        regex: 'https://coin-metadata-api-production.up.railway.app/health'
+        target_label: api_name
+        replacement: 'coin-metadata-api'
+      - source_labels: [__address__]
+        regex: 'https://rates-api-production.up.railway.app/health'
+        target_label: api_name
+        replacement: 'rates-api'
+      - source_labels: [__address__]
+        regex: 'https://file-upload-prod.up.railway.app/health'
+        target_label: api_name
+        replacement: 'file-upload-api'
+      - source_labels: [__address__]
+        regex: 'https://ww-img-serve-prd-production.up.railway.app/health'
+        target_label: api_name
+        replacement: 'image-serve-api'
+      - source_labels: [__address__]
+        regex: 'https://interest-stable-dex-api-production.up.railway.app/health'
+        target_label: api_name
+        replacement: 'interest-stable-dex-api'
+      - source_labels: [__address__]
+        regex: 'https://ww-server-prod-production.up.railway.app/health'
+        target_label: api_name
+        replacement: 'ww-server-api'
+      - source_labels: [__address__]
+        regex: 'https://prdquestapi-production.up.railway.app/health'
+        target_label: api_name
+        replacement: 'quest-api'
+      - source_labels: [__address__]
+        regex: 'https://trade-aggregator-api-production.up.railway.app/health'
+        target_label: api_name
+        replacement: 'trade-aggregator-api'
+      - source_labels: [__address__]
+        regex: 'https://movement-market-pulse-production.up.railway.app/health'
+        target_label: api_name
+        replacement: 'market-pulse-api'
+      - source_labels: [__address__]
+        regex: 'https://api-vesting-production.up.railway.app/health'
+        target_label: api_name
+        replacement: 'vesting-api'
+      # Usar o nome da API como instance em vez da URL completa
+      - source_labels: [api_name]
         target_label: instance
       - target_label: __address__
         replacement: black-box.railway.internal:9115
@@ -111,6 +158,14 @@ scrape_configs:
       - targets: ['movement-market-pulse-production.up.railway.app']
         labels:
           application: 'Movement Market Pulse API'
+
+  - job_name: 'vesting_api'
+    #metrics_path: '/prom-metrics'
+    scheme: https
+    static_configs:
+      - targets: ['api-vesting-production.up.railway.app']
+        labels:
+          application: 'Vesting API'
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https
